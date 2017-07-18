@@ -39,5 +39,5 @@ body.collection {
 }
 
 .navbar-link:active {
-  background-color: white;
+  background: white ;
 }
