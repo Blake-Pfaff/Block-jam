@@ -25,7 +25,24 @@ var albumMarconi = {
         { title: 'Ring, ring, ring', duration: '5:01' },
         { title: 'Fits in your pocket', duration: '3:21'},
         { title: 'Can you hear me now?', duration: '3:14' },
-        { title: 'Wrong phone number', duration: '2:15'}
+        { title: 'Wrong phone number', duration: '2:15'},
+    ]
+};
+
+var albumNin = {
+    title: 'broken',
+    artist: 'Nine Inch Nails',
+    label: 'Interscope and Nothing',
+    year: '1993',
+    albumArtUrl: 'assets/images/album_covers/nin.jpg',
+    songs: [
+        { title: 'Pinion', duration: '1:02' },
+        { title: 'Wish', duration: '3:46' },
+        { title: 'Help Me I Am In Hell', duration: '1:56'},
+        { title: 'Happiness In Slavery', duration: '5:21' },
+        { title: 'Gave Up', duration: '4:08'},
+        { title: 'Physical', duration: '5:29'},
+        { title: 'Suck', duration: '5:07'}
     ]
 };
 
@@ -65,5 +82,20 @@ var setCurrentAlbum = function(album) {
 };
 
 window.onload = function() {
-    setCurrentAlbum(albumPicasso);
+    setCurrentAlbum(albumNin);
 };
+
+var images = document.getElementsByClassName('album-cover-art')[0];
+
+images.addEventListener('click', function() {
+
+  var albumArr = [albumPicasso, albumNin, albumMarconi]
+  console.log(albumArr);
+  var rando = Math.floor(Math.random() * 3 );
+  console.log(rando);
+  var randoAlbum = albumArr[rando];
+  console.log(randoAlbum);
+  setCurrentAlbum(randoAlbum);
+
+});
+//
