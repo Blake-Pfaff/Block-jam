@@ -29,6 +29,22 @@ var albumMarconi = {
     ]
 };
 
+var albumNin = {
+     title: 'broken',
+     artist: 'Nine Inch Nails',
+     label: 'Interscope and Nothing',
+     year: '1993',
+     albumArtUrl: 'assets/images/album_covers/nin.jpg',
+     songs: [
+         { title: 'Pinion', duration: '1:02' },
+         { title: 'Wish', duration: '3:46' },
+        { title: 'Help Me I Am In Hell', duration: '1:56'},
+        { title: 'Happiness In Slavery', duration: '5:21' },
+         { title: 'Gave Up', duration: '4:08'},
+         { title: 'Physical', duration: '5:29'},
+        { title: 'Suck', duration: '5:07'}
+      ]
+};
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         `<tr class="album-view-song-item">`
@@ -40,6 +56,12 @@ var createSongRow = function(songNumber, songName, songLength) {
 
       return template;
 };
+
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0]
 
 var setCurrentAlbum = function(album) {
     // gets elements needed to make the diaplay
@@ -65,5 +87,16 @@ var setCurrentAlbum = function(album) {
 };
 
 window.onload = function() {
-    setCurrentAlbum(albumPicasso);
+    setCurrentAlbum(albumNin);
+
+    var albums = [albumPicasso, albumMarconi, albumNin];
+    var index = 0;
+    albumImage.addEventListener('click', function() {
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length) {
+          index = 0;
+        }
+    });
+
 };
