@@ -56,16 +56,13 @@ var createSongRow = function(songNumber, songName, songLength) {
      $row.hover(onHover, offHover);
      return $row;
  };
-// NEW CODE TO FIND PARENT
-// added w/ mentor ***
 
-// ***
 
-var albumTitle = document.getElementsByClassName('album-view-title')[0];
-var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+// var albumTitle = document.getElementsByClassName('album-view-title')[0];
+// var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+// var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
 var albumImage = document.getElementsByClassName('album-cover-art')[0];
-var albumSongList = document.getElementsByClassName('album-view-song-list')[0]
+// var albumSongList = document.getElementsByClassName('album-view-song-list')[0]
 
 var setCurrentAlbum = function(album) {
   currentAlbum = album;
@@ -81,13 +78,27 @@ var setCurrentAlbum = function(album) {
   $albumReleaseInfo.text(album.year + ' ' + album.label);
   $albumImage.attr('src', album.albumArtUrl);
 
+
   $albumSongList.empty();
-    // #4
+
+
     for (var i = 0; i < album.songs.length; i++) {
       var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
       $albumSongList.append($newRow);
     }
+
+
 };
+
+var updatePlayerBarSong = function() {
+
+    $('h2 .song-name').text('test');
+    $('.currently-playing .artist-name').text(currentAlbum.artist);
+
+    $('.currently-playing.artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
+
+};
+
 
 
 
@@ -96,8 +107,9 @@ var setCurrentAlbum = function(album) {
 var playButtonTemplate =  '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 // store state od playing songs
-var currentlyPlayingSong = null;
+var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
+var currentSongFromAlbum = null;
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);

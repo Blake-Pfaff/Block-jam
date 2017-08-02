@@ -1,4 +1,4 @@
-
+alert();
 var albumPicasso = {
     title: 'The Colors',
     artist: 'Pablo Picasso',
