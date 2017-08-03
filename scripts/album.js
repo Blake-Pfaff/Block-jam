@@ -25,6 +25,7 @@ var createSongRow = function(songNumber, songName, songLength) {
 
     var songNumber = $(this).attr('data-song-number');
 
+
 	  if (currentlyPlayingSongNumber !== null) {
 		// Revert to song number for currently playing song because user started playing new song.
 		var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
@@ -32,18 +33,18 @@ var createSongRow = function(songNumber, songName, songLength) {
 	  }
 	  if (currentlyPlayingSongNumber !== songNumber) {
 		// Switch from Play -> Pause button to indicate new song is playing.
-		$(this).html(pauseButtonTemplate);
+    $(this).html(pauseButtonTemplate);
 		currentlyPlayingSongNumber = songNumber;
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+     updatePlayerBarSong();
   } else if (currentlyPlayingSongNumber === songNumber) {
 		// Switch from Pause -> Play button to pause currently playing song.
 		$(this).html(playButtonTemplate);
+    $('.main-controls .play-pause').html(playerBarPlayButton);
 		currentlyPlayingSongNumber = null;
     currentSongFromAlbum = null;
-
-
-
   }
+  updatePlayerBarSong();
 };
 
      var offHover = function(event) {
@@ -98,7 +99,7 @@ updatePlayerBarSong = function() {
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-
+    $('.main-controls .play-pause').html(playerBarPauseButton);
 };
 
 
@@ -107,7 +108,9 @@ updatePlayerBarSong = function() {
 
 var playButtonTemplate =  '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
-// store state od playing songs
+var playerBarPlayButton = `<span class="ion-play"></span>`
+var playerBarPauseButton = `<span class="ion-pause"></span>`
+// store state of playing songs
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
