@@ -40,7 +40,10 @@ var createSongRow = function(songNumber, songName, songLength) {
 		$(this).html(playButtonTemplate);
 		currentlyPlayingSongNumber = null;
     currentSongFromAlbum = null;
-	}
+
+
+
+  }
 };
 
      var offHover = function(event) {
@@ -90,15 +93,13 @@ var setCurrentAlbum = function(album) {
 
 };
 
-var updatePlayerBarSong = function() {
+updatePlayerBarSong = function() {
 
-    $('h2 .song-name').text('test');
+    $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
-
-    $('.currently-playing.artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
+    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
 
 };
-
 
 
 
@@ -114,10 +115,9 @@ var currentSongFromAlbum = null;
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
 
-  });
-
     var albums = [albumPicasso, albumMarconi, albumNin];
     var index = 1;
+
     albumImage.addEventListener('click', function() {
         setCurrentAlbum(albums[index]);
         index++;
@@ -125,3 +125,7 @@ $(document).ready(function() {
           index = 0;
         }
     });
+
+
+
+  });
