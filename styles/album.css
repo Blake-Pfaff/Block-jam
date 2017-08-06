@@ -82,6 +82,23 @@ body.album {
     line-height: 28px;
 }
 
+.player-bar .volume {
+    width: 25%;
+    text-align: right;
+}
+
+.player-bar .volume .icon {
+    font-size: 1.1rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.player-bar .volume .seek-bar {
+    display: inline-block;
+    width: 5.75rem;
+    vertical-align: middle;
+}
+
 @media (max-width: 640px) and (min-width: 320px) {
   .album-view-details {
     text-align: center;
