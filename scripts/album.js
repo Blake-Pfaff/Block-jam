@@ -190,6 +190,26 @@ var previousSong = function() {
     $lastSongNumberCell.html(lastSongNumber);
 };
 
+togglePlayFromPlayerBar = function() {
+
+
+
+   var $playerBarPlayButton = $('.ion-play');
+   var $playerBarPauseButton = $('.ion-pause');
+
+  if (currentlyPlayingSongNumber === null) {
+
+        currentSoundFile.play()
+        $playerBarPauseButton.html(playerBarPlayButton);
+
+  } else if (currentlyPlayingSongNumber !== null) {
+       currentSoundFile.stop();
+       $playerBarPlayButton.html(playerBarPauseButton);
+
+  }
+
+};
+
 updatePlayerBarSong = function() {
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
@@ -213,13 +233,16 @@ var currentSoundFile = null;
 var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
- var $nextButton = $('.main-controls .next');
+var $nextButton = $('.main-controls .next');
+var $playPauseButton = $ ('.main-controls .play-pause');
 
 $(document).ready(function() {
 // first thing that happens when page is loaded. Song is set.
     setCurrentAlbum(albumPicasso);
+
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+    $playPauseButton.click(togglePlayFromPlayerBar);
 
     var albums = [albumPicasso, albumMarconi, albumNin];
     var index = 1;
