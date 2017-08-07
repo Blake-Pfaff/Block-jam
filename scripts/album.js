@@ -192,19 +192,19 @@ var previousSong = function() {
 
 togglePlayFromPlayerBar = function() {
 
+  var $playPause = $('.main-controls .play-pause')
 
-
-   var $playerBarPlayButton = $('.ion-play');
-   var $playerBarPauseButton = $('.ion-pause');
 
   if (currentlyPlayingSongNumber === null) {
 
-        currentSoundFile.play()
-        $playerBarPauseButton.html(playerBarPlayButton);
+    $playPauseButton.html(playerBarPauseButton);
+    currentSoundFile.play();
 
-  } else if (currentlyPlayingSongNumber !== null) {
-       currentSoundFile.stop();
-       $playerBarPlayButton.html(playerBarPauseButton);
+
+  } else  {
+
+    currentSoundFile.stop()
+    $playPauseButton.html(playerBarPlayButton);
 
   }
 
