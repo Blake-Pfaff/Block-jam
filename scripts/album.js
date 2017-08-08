@@ -151,7 +151,7 @@ var updateSeekBarWhileSongPlays = function() {
              var $seekBar = $('.seek-control .seek-bar');
 
              updateSeekPercentage($seekBar, seekBarFillRatio);
-             setCurrentTimeInPlayerBar(currentTime);
+             setCurrentTimeInPlayerBar();
          });
      }
  };
@@ -334,8 +334,10 @@ var setTotalTimeInPlayerBar = function(totalTime) {
 
 var filterTimeCode = function(timeInSeconds) {
 
-  var timeInSecondsConverted = parseFloat(timeInSeconds);
-  var timeRounded = Math.floor(timeInSecondsConverted);
+  var timeToPars = parseFloat(timeInSeconds);
+
+  var timeRounded = Math.floor(timeToPars);
+  console.log(timeRounded);
 
 };
 
