@@ -151,7 +151,7 @@ var updateSeekBarWhileSongPlays = function() {
              var $seekBar = $('.seek-control .seek-bar');
 
              updateSeekPercentage($seekBar, seekBarFillRatio);
-             setCurrentTimeInPlayerBar();
+             setCurrentTimeInPlayerBar(currentTime);
          });
      }
  };
@@ -316,7 +316,8 @@ updatePlayerBarSong = function() {
 
 var setCurrentTimeInPlayerBar = function(currentTime) {
 
-  var $currentTime = $('.current-time');
+
+  var $currentTime = $('.seek-control .current-time');
   var filteredCurrentTime = filterTimeCode(currentTime);
 
   $currentTime.html(filteredCurrentTime);
@@ -334,10 +335,18 @@ var setTotalTimeInPlayerBar = function(totalTime) {
 
 var filterTimeCode = function(timeInSeconds) {
 
-  var timeToPars = parseFloat(timeInSeconds);
+  var parsedTime = parseFloat(timeInSeconds);
 
-  var timeRounded = Math.floor(timeToPars);
-  console.log(timeRounded);
+  var firstStep = parsedTime / 60;
+
+  var timeMultiplied = firstStep * 100;
+
+  var timeRounded = Math.floor(timeMultiplied);
+  // console.log(timeRounded);
+
+  var timeDivided = timeRounded / 100;
+
+  return timeDivided;
 
 };
 
@@ -361,6 +370,8 @@ var $playPauseButton = $ ('.main-controls .play-pause');
 
 $(document).ready(function() {
 // first thing that happens when page is loaded. Song is set.
+
+
     setCurrentAlbum(albumPicasso);
     setupSeekBars();
     $previousButton.click(previousSong);
