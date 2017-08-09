@@ -334,7 +334,12 @@ var filterTimeCode = function(timeInSeconds) {
 
   var extraSeconds = Math.floor(timeInSeconds % 60);
 
+  if (extraSeconds < 10) {
+    return minutes + ":" + 0 + extraSeconds;
+  } else {
+
   return minutes + ":" + extraSeconds;
+}
 
 };
 
