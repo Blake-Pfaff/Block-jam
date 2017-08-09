@@ -333,7 +333,7 @@ var filterTimeCode = function(timeInSeconds) {
   var minutes = Math.floor(timeInSeconds / 60);
 
   var extraSeconds = Math.floor(timeInSeconds % 60);
-  
+
   return minutes + ":" + extraSeconds;
 
 };
@@ -359,10 +359,11 @@ var $playPauseButton = $ ('.main-controls .play-pause');
 
 $(document).ready(function() {
 // first thing that happens when page is loaded. Song is set.
-
+    var $seekBar = $('#timeSeekBar');
 
     setCurrentAlbum(albumPicasso);
     setupSeekBars();
+    updateSeekPercentage($seekBar, 0);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
     $playPauseButton.click(togglePlayFromPlayerBar);
