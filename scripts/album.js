@@ -20,6 +20,7 @@ var setSong = function(songNumber) {
 
 var seek = function(time) {
   if (currentSoundFile) {
+    // console.log(time);
     currentSoundFile.setTime(time);
   }
 }
@@ -151,7 +152,7 @@ var updateSeekBarWhileSongPlays = function() {
              var $seekBar = $('.seek-control .seek-bar');
 
              updateSeekPercentage($seekBar, seekBarFillRatio);
-             setCurrentTimeInPlayerBar(currentTime);
+             setCurrentTimeInPlayerBar(this.getTime());
          });
      }
  };
@@ -171,12 +172,7 @@ var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
 
 var setupSeekBars = function() {
   // use jQUrey to make an array from the classes selected
-
-
   var $seekBars = $('.player-bar .seek-bar');
-
-
-
 
   $seekBars.click(function(event) {
   //  X is the horizontal coordinate the ar witch the 'event' (the event object) occured.
@@ -220,7 +216,6 @@ var setupSeekBars = function() {
 
               updateSeekPercentage($seekBar, seekBarFillRatio);
           });
-
 
          $(document).bind('mouseup.thumb', function() {
              $(document).unbind('mousemove.thumb');
@@ -312,41 +307,34 @@ updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 };
 
+
 var setCurrentTimeInPlayerBar = function(currentTime) {
-
-
   var $currentTime = $('.seek-control .current-time');
   var filteredCurrentTime = filterTimeCode(currentTime);
 
   $currentTime.html(filteredCurrentTime);
-
 };
 
 var setTotalTimeInPlayerBar = function(totalTime) {
 
-  var $totalTime = $('.total-time');
-  var filteredTotalTime = filteredTotalTime(totalTime);
+var $totalTime = $('.seek-control .total-time');
 
-  $totalTime.html(filteredTotalTime);
+ var filteredTotal = filterTimeCode(currentSongFromAlbum.duration);
+
+$totalTime.html(filteredTotal);
 
 };
 
 var filterTimeCode = function(timeInSeconds) {
 
-  var parsedTime = parseFloat(timeInSeconds);
+  var minutes = Math.floor(timeInSeconds / 60);
 
-  var firstStep = parsedTime / 60;
-
-  var timeMultiplied = firstStep * 100;
-
-  var timeRounded = Math.floor(timeMultiplied);
-  // console.log(timeRounded);
-
-  var timeDivided = timeRounded / 100;
-
-  return timeDivided;
+  var extraSeconds = Math.floor(timeInSeconds % 60);
+  
+  return minutes + ":" + extraSeconds;
 
 };
 
@@ -363,6 +351,7 @@ var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
 var currentSoundFile = null;
 var currentVolume = 80;
+var currentTime = $('.current-time');
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
